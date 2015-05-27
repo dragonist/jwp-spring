@@ -138,4 +138,21 @@ public class Question {
 			return false;
 		return true;
 	}
+
+	public boolean update(Question question) {
+		boolean result = false;
+		if(!this.writer.equals(question.writer)){
+			this.writer = question.writer;
+			result = true;
+		}
+		if(!this.title.equals(question.title)){
+			this.title = question.title;
+			result = true;
+		}
+		if(!this.contents.equals(question.contents)){
+			this.contents = question.contents;
+			result = true;
+		}
+		return result;
+	}
 }

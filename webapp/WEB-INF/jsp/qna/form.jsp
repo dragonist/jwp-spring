@@ -7,9 +7,19 @@
 </head>
 <body>
 	<%@ include file="/include/top.jspf"%>
+	
+	<c:choose>
+    <c:when test="${question.questionId == 0}">
+    	<c:set value="/questions" var="urlPath" scope="request"/>
+    </c:when>
+    <c:otherwise>
+     	<c:set value="/questions/${question.questionId}" var="urlPath" scope="request"/>
+    </c:otherwise>
+    </c:choose>
 
 	<div id="main">
-		<form:form modelAttribute="question" action="/questions" method="post">
+		<form:form modelAttribute="question" action="${urlPath}" method="post">
+			<form:hidden path="questionId"/>
 			<table>
 				<tr>
 					<td width="150">글쓴이</td>

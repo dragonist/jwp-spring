@@ -57,4 +57,11 @@ public class QnaService {
 		answerDao.delete(answerId);
 		questionDao.decreaseCommentCount(questionId);
 	}
+
+	public void update(Question questionFromUser) {
+		Question question = questionDao.findById(questionFromUser.getQuestionId());
+		if(question.update(questionFromUser)){
+			questionDao.update(question);
+		}
+	}
 }
