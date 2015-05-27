@@ -50,3 +50,8 @@ WebServerLauncher.class 에 main 이 실행된다 -> 톰캣이 시작 된다
 ### 9. UserService와 QnaService 중 multi thread에서 문제가 발생할 가능성이 있는 소스는 무엇이며, 그 이유는 무엇인가?
 * 
 '''
+singleton : 하나의 빈정의가 스프링 ioC 컨테이너마다 하나의 객체 인스턴스가 되는 범위
+prototype : 하나의 빈정의가 다수의 객체 인스턴스가 되는 범위를 말한다
+따라서 @Scope("prototype") 이렇게 설정해야 Service Class 가 하나의 인스턴스가 아닌 여러개의 인스턴스를 만드므로
+동시 접근했을때 문제가 생기지 않는다.
+'''
