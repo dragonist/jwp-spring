@@ -17,6 +17,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Scope("prototype")
@@ -35,6 +36,7 @@ public class UserService {
 		this.userDao = userDao;
 	}
 
+	@Transactional
 	public User join(User user) throws ExistedUserException {
 		log.debug("User : {}", user);
 
@@ -48,6 +50,7 @@ public class UserService {
 		return user;
 	}
 
+	@Transactional
 	public User login(String userId, String password) throws PasswordMismatchException {
 		auditService.log(new AuditObject(userId, LOGIN_TRY));
 
