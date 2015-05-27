@@ -30,6 +30,8 @@
 					// delete current NODE.
 					var elCurrent = e.target.parentElement.parentElement;
 					elCurrent.parentNode.removeChild(elCurrent);
+				}else{
+					console.log(result.errorMessage);
 				}
 			}
 		}
@@ -49,7 +51,12 @@
 
 		request.onreadystatechange = function() {
 			if (request.readyState == 4 && request.status == 200) {
-				location.reload(true)
+				var result = JSON.parse(request.responseText);
+				if (result.status) {
+					location.reload(true)
+				}else{
+					alert(result.errorMessage);
+				}
 			}
 		}
 
