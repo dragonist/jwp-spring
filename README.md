@@ -40,11 +40,16 @@ bean을 찾을때 자식에서 먼저 찾고 없으면 부모에서 찾는다
 ### 3. 서버 시작 후 http://localhost:8080으로 접근해서 질문 목록이 보이기까지 흐름에 대해 최대한 구체적으로 설명하라. 
 * 
 '''
-WebServerLauncher.class 에 main 이 실행된다 -> 톰캣이 시작 된다
-톰캣이 webapp/web-INF/web.xml을 실행시킨다 -> 쫌있다 하기
+http://localhost:8080으로 접근하면 dispatcherServlet 이 시작된다
+dispatcherServlet 은 next-servlet.xml 을 실행시키고
+<mvc:annotation-driven />에 따라 @Controller가 붙은 클래스를 controller 빈으로 등록하고
+@Controller 에서 url에 매핑되는 메소드를 실행 시킨다.
 
+메소드에 parameter 는 타입에 따라 새로운 객체를 생성하고 
+새로운 객체의 set'변수'() 메소드에 '변수'랑 매핑되는 request.parameter값을 넣어준다
 
-
+객체의 parameter 중 model은 response처럼 add.Attribute하면 
+return 값에 매핑되는 jsp를 찾고 attribute를 매핑해서 클라이언트에게 준다
 '''
 
 ### 9. UserService와 QnaService 중 multi thread에서 문제가 발생할 가능성이 있는 소스는 무엇이며, 그 이유는 무엇인가?
